@@ -24,13 +24,16 @@ namespace Felmata
             IEnumerable<Customer> result = from customer in customers
                                            where customer.FirstName == "Donna"
                                            select customer;
+
+            List<Customer> cachedResult = result.ToList<Customer>();
+
             Console.WriteLine("FirstName == \"Donna\"");
-                foreach(Customer customer in result)
+                foreach(Customer customer in cachedResult)
                     Console.WriteLine(customer.ToString());
 
                 customers[3].FirstName = "Donna";
                 Console.WriteLine("FirstName == \"Donna\"research");
-                foreach (Customer customer in result)
+                foreach (Customer customer in cachedResult)
                     Console.WriteLine(customer.ToString());
         }
 
