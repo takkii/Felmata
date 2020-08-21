@@ -19,16 +19,18 @@ namespace Felmata
     {
         static void Main(string[] args)
         {
-            List<Customer> customers = CreateCustomerList();
+            try
+            {
+                List<Customer> customers = CreateCustomerList();
 
-            IEnumerable<Customer> result = from customer in customers
-                                           where customer.FirstName == "Donna"
-                                           select customer;
+                IEnumerable<Customer> result = from customer in customers
+                                               where customer.FirstName == "Donna"
+                                               select customer;
 
-            List<Customer> cachedResult = result.ToList<Customer>();
+                List<Customer> cachedResult = result.ToList<Customer>();
 
-            Console.WriteLine("FirstName == \"Donna\"");
-                foreach(Customer customer in cachedResult)
+                Console.WriteLine("FirstName == \"Donna\"");
+                foreach (Customer customer in cachedResult)
                     Console.WriteLine(customer.ToString());
 
                 customers[2].FirstName = "Keith";
@@ -40,6 +42,27 @@ namespace Felmata
 
                 foreach (Customer customer in cachedResult)
                     Console.WriteLine(customer.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                string Revision = VersionUserInfo.RevisionString;
+                string RevisionMessage = VersionUserInfo.RevisionMessage;
+
+                Console.WriteLine("-------------------------------------");
+                Console.Write(Revision + " : ");
+                Console.WriteLine(RevisionMessage);
+                Console.WriteLine("-------------------------------------");
+            }
+        }
+
+        public class VersionUserInfo
+        {
+            public const string RevisionString = "1.0.0.RC1";
+            public const string RevisionMessage = "Updated Fall Augest";
         }
 
         private static List<Customer> CreateCustomerList()
