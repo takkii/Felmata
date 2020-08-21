@@ -31,8 +31,13 @@ namespace Felmata
                 foreach(Customer customer in cachedResult)
                     Console.WriteLine(customer.ToString());
 
-                customers[3].FirstName = "Donna";
-                Console.WriteLine("FirstName == \"Donna\"research");
+                customers[2].FirstName = "Keith";
+                customers[2].LastName = "Harris";
+                customers[2].EmailAddress = "keith0@adventure-work.com";
+                Console.WriteLine("FirstName == \"Keith\" research");
+                Console.WriteLine("Harris == \"Harris\" research");
+                Console.WriteLine("EmailAddress == \"keith0@adventure-work.com\" research");
+
                 foreach (Customer customer in cachedResult)
                     Console.WriteLine(customer.ToString());
         }
